@@ -12,7 +12,7 @@ app.controller("botctrl", function($scope, $http){
         update.message.text = texto;
         
         
-        $http.post("https://projeto-lab-chopp.herokuapp.com/update", update)
+        $http.post("http://localhost:8080/update", update)
             .then(function(result){
                 console.log('result');
                 console.log(result);
@@ -61,7 +61,7 @@ app.controller("botctrl", function($scope, $http){
         
         if(item.categoria.nome === "Espetinho"){
             console.log("Agora foi no espetinho né?");
-            $http.post("https://projeto-lab-chopp.herokuapp.com/salvaEspetinho", item)
+            $http.post("http://localhost:8080/salvaEspetinho", item)
             .then(function(){
                 console.log("foieee");
                 $scope.enviando=false;
@@ -126,11 +126,11 @@ app.controller("botctrl", function($scope, $http){
         }  
     
     }    
-    $scope.listar = function(item){
+    $scope.listarItem = function(item){
         $scope.buscando = true;
         console.log("buscandooOOOoo");        
         if(item.categoria.nome === "Espetinho"){
-            $http.get("https://projeto-lab-chopp.herokuapp.com/listaEspetinhos")
+            $http.get("http://localhost:8080/listaEspetinhos")
                 .then(function(item){
                     $scope.buscando=false;
                     console.log(item);
@@ -188,6 +188,21 @@ app.controller("botctrl", function($scope, $http){
                 });
         }
 
+    }
+    $scope.deletarItem = function(item){
+        $scope.buscando = true;
+        console.log("Alterandoooo");        
+        
+            $http.get("http://localhost:8080/deletarItens")
+                .then(function(item){
+                    $scope.buscando=false;
+                    console.log(item);
+                    $scope.itens = item.data;
+                },function(erro){
+                    $scope.buscando=false;
+                    console.log(erro);
+                });
+        
     }
     
     $scope.clientes = [];

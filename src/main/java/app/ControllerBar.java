@@ -110,7 +110,7 @@ public class ControllerBar {
 
     }
     
-    //Listar Banco    
+    //Listar Itens    
     @RequestMapping(method=RequestMethod.GET, value="/listaEspetinhos")
     public List<ItemEspetinho> listarEspetinhos() {
 
@@ -158,6 +158,18 @@ public class ControllerBar {
         itemNaoAlcoolRepository = context.getBean(ItemNaoAlcoolRepository.class);
 
         return (List<ItemNaoAlcool>) itemNaoAlcoolRepository.findAll();
+
+    }
+    
+    //Alterar Itens
+    @RequestMapping(method=RequestMethod.GET, value="/deletarItens")
+    public void deletarItens() {
+
+        System.out.println("uebaaa!!! Deletando");
+        itemEspetinhoRepository = context.getBean(ItemEspetinhoRepository.class);
+        int t = 0;
+
+        itemEspetinhoRepository.delete(t);
 
     }
  

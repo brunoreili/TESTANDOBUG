@@ -92,21 +92,24 @@
             <select class="form-control" ng-model="item.categoria" ng-options="categoria.nome group by categoria.tipo for categoria in categorias">
                 <option value="">Selecione a categoria do item</option>
             </select> <br/>
-            <button class="btn btn-primary" ng-click="listar(item)" ng-disabled="!item.categoria">Listar</button>
+            <button class="btn btn-primary" ng-click="listarItem(item)" ng-disabled="!item.categoria">Listar</button>
             <h4 ng-show="buscando">Buscando...</h4>
             
             <table class="table table-striped" ng-show="itens">
                 <tr>
+                    <th></th>
                     <th style="text-align: center">Nome</th>
                     <th style="text-align: center">valor R$</th>
                 </tr>
                 <tr ng-repeat="item in itens">
+                    <td><button ng-click="deletarItem(item.id)">Deletar</button></td>
                     <td>{{item.nome}}</td>
                     <td>{{item.valor}}</td>
                 </tr>
             </table>
         </div>
         
+              
         <hr/><!--Consumo Médio-->
         <div class="jumbotron">
             <h3>Consumo Médio de Clientes</h3>
